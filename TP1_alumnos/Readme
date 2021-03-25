@@ -1,0 +1,11 @@
+Trabajo práctico N° 1.
+Desarrollo de aplicaciones sobre sistemas operativos de proposito general - CESE. FIUBA.
+
+
+
+
+Requerimientos:
+• Se deberá leer el archivo y enviar los datos cada 30 segundos.
+• La cantidad de monedas en el archivo CSV puede ser variable (no siempre son 3 monedas)
+• Capturar la signal SIGINT para salir del proceso de forma ordenada.
+• El programa leerá la ruta del archivo CSV desde un archivo config.txt
