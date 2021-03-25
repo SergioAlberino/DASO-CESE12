@@ -69,6 +69,6 @@ class Main:
             self.model.updateData(data)
             self.view.show()
             s.sendto(bytearray("OK","utf-8"),addr)
-            print("Escuchando y oido ")
+            print("Actualizado ")
 m = Main()
 m.main()
