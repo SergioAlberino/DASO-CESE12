@@ -1,7 +1,6 @@
 #!/usr/bin/python3
+# -*- coding: utf-8 -*-
 
-# ParserService para TP! de Diseño de Aplicaciones 12CESE
-# Alumno: Sergio Alberino
 import socket
 import sys
 import json
@@ -52,12 +51,13 @@ while True:
         reader = csv.DictReader(data)
         for row in reader:
             formLine = {"id": int(row['id']), "value1": float(row['compra']), "value2": float(row['venta']), "name": row['nombre']}
-            # print(formLine)
+            print(formLine)
             jsonArray.append(formLine)
     
     jsonString = Parser.parseData(jsonArray)
     print ('JSONstring:', jsonString)
 
+    print("*****************************")
     sock.sendall(bytes(jsonString ,encoding="utf-8"))
 
     # Receive response

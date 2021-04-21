@@ -1,1 +1,1 @@
-C:\Proyectos\DASO-CESE12\TP1_alumnos\datos.csv
+/home/alberino/Proyectos/DASO-CESE12/TP1_alumnos/datos.csv
