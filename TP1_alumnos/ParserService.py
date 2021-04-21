@@ -35,37 +35,45 @@ def signal_handler(sig, frame):
 signal.signal(signal.SIGINT, signal_handler)
 
 
-# Create a UDP socket
-sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+class Main:
 
-# Connect the socket to the port where the server is listening
-server_address = ('localhost', port)
-print('connecting to {} port {}'.format(server_address[0],server_address[1]))
-sock.connect(server_address)
+    def __init__(self):
+        pass
 
-jsonArray = []
+    def main(self):
 
-while True:
-    #read csv file
-    with open(filePath, 'r') as data:
-        reader = csv.DictReader(data)
-        for row in reader:
-            formLine = {"id": int(row['id']), "value1": float(row['compra']), "value2": float(row['venta']), "name": row['nombre']}
-            print(formLine)
-            jsonArray.append(formLine)
-    
-    jsonString = Parser.parseData(jsonArray)
-    print ('JSONstring:', jsonString)
+        # Create a UDP socket
+        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
-    print("*****************************")
-    sock.sendall(bytes(jsonString ,encoding="utf-8"))
+        # Connect the socket to the port where the server is listening
+        server_address = ('localhost', port)
+        print('connecting to {} port {}'.format(server_address[0],server_address[1]))
+        sock.connect(server_address)
 
-    # Receive response
-    print('waiting to receive')
-    data, server = sock.recvfrom(4096)
-    print('received {!r}'.format(data))
+        jsonArray = []
 
-    # Wait 30 sec
-    time.sleep(30)
+        while True:
+            #read csv file
+            with open(filePath, 'r') as data:
+                reader = csv.DictReader(data)
+                for row in reader:
+                    formLine = {"id": int(row['id']), "value1": float(row['compra']), "value2": float(row['venta']), "name": row['nombre']}
+                    print(formLine)
+                    jsonArray.append(formLine)
+            
+            jsonString = Parser.parseData(jsonArray)
+            print ('JSONstring:', jsonString)
 
+            print("*****************************")
+            sock.sendall(bytes(jsonString ,encoding="utf-8"))
+
+            # Receive response
+            print('waiting to receive')
+            data, server = sock.recvfrom(4096)
+            print('received {!r}'.format(data))
+
+            # Wait 30 sec
+            time.sleep(30)
+m = Main()
+m.main()
 
